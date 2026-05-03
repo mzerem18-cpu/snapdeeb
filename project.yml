@@ -1,6 +1,6 @@
 name: snapdeeb
 options:
-  bundleIdPrefix: dev.inc
+  bundleIdPrefix: com.snapdeeb
 targets:
   snapdeeb:
     type: application
@@ -16,11 +16,12 @@ targets:
       path: Info.plist
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: dev.inc.snap
+        PRODUCT_BUNDLE_IDENTIFIER: com.snapdeeb.vsaver
         MARKETING_VERSION: "5.1"
         CURRENT_PROJECT_VERSION: "1"
-        SWIFT_VERSION: "5.0"
-        ENABLE_PREVIEWS: "NO"
-        CODE_SIGNING_ALLOWED: "NO"
+        SWIFT_VERSION: "5.5"
+        ENABLE_BITCODE: NO
+        CODE_SIGNING_ALLOWED: NO
+        CODE_SIGNING_REQUIRED: NO
         CODE_SIGN_IDENTITY: ""
-        CODE_SIGNING_REQUIRED: "NO"
+        AD_HOC_CODE_SIGNING_ALLOWED: YES
