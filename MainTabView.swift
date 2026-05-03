@@ -1,17 +1,31 @@
 import SwiftUI
-import UIKit
 
 struct MainTabView: View {
     init() {
         UITabBar.appearance().backgroundColor = UIColor.systemBackground
+        UITabBar.appearance().unselectedItemTintColor = UIColor.lightGray
     }
     
     var body: some View {
         TabView {
-            DownloadView().tabItem { Label("Download", systemImage: "arrow.down.circle.fill") }
-            LibraryView().tabItem { Label("Library", systemImage: "photo.on.rectangle") }
-            SettingsView().tabItem { Label("Settings", systemImage: "slider.horizontal.3") }
+            DownloadView()
+                .tabItem {
+                    Image(systemName: "arrow.down.circle.fill")
+                    Text("Download")
+                }
+            
+            LibraryView()
+                .tabItem {
+                    Image(systemName: "photo.on.rectangle")
+                    Text("Library")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Image(systemName: "slider.horizontal.3")
+                    Text("Settings")
+                }
         }
-        .accentColor(.yellow)
+        .accentColor(.yellow) // ڕەنگی زەرد بۆ تابی دیاریکراو
     }
 }
