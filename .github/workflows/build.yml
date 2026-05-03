@@ -19,9 +19,22 @@ jobs:
       - name: Generate Xcode Project
         run: xcodegen generate
 
-      - name: Build and Package Unsigned IPA
+      - name: Build Xcode Project
         run: |
-          xcodebuild clean build -project snapdeeb.xcodeproj -scheme snapdeeb -configuration Release -arch arm64 -sdk iphoneos CODE_SIGNING_ALLOWED=NO
+          # کەمێک کۆدمان گۆڕی بۆ ئەوەی باشتر کار بکات و ئیرۆری 65 نەدات
+          xcodebuild clean build \
+            -project snapdeeb.xcodeproj \
+            -scheme snapdeeb \
+            -configuration Release \
+            -arch arm64 \
+            -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            COMPILER_INDEX_STORE_ENABLE=NO
+
+      - name: Package into IPA
+        run: |
           mkdir -p Payload
           mv build/Release-iphoneos/snapdeeb.app Payload/
           zip -r snapdeeb_v5.1.ipa Payload
