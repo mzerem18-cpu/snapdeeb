@@ -19,6 +19,8 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.snapdeeb.vsaver
         MARKETING_VERSION: "5.1"
         CURRENT_PROJECT_VERSION: "1"
+        SWIFT_VERSION: "5.0" # ئەم دێڕەمان زیاد کرد بۆ چارەسەری کێشەکە
+        ENABLE_PREVIEWS: "NO" # ئەم دێڕەمان زیاد کرد بۆ ڕێگریکردن لە ئیرۆری پێشوو
         CODE_SIGNING_ALLOWED: "NO"
         CODE_SIGN_IDENTITY: ""
         CODE_SIGNING_REQUIRED: "NO"
