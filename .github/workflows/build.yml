@@ -21,7 +21,7 @@ jobs:
 
       - name: Build Xcode Project
         run: |
-          # کەمێک کۆدمان گۆڕی بۆ ئەوەی باشتر کار بکات و ئیرۆری 65 نەدات
+          # لێرەدا فەرمانی CONFIGURATION_BUILD_DIR مان زیاد کرد بۆ ئەوەی شوێنی ئەپەکە ڕێک بخەین
           xcodebuild clean build \
             -project snapdeeb.xcodeproj \
             -scheme snapdeeb \
@@ -31,7 +31,8 @@ jobs:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
-            COMPILER_INDEX_STORE_ENABLE=NO
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            CONFIGURATION_BUILD_DIR=build/Release-iphoneos
 
       - name: Package into IPA
         run: |
