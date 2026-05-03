@@ -1,6 +1,11 @@
 import SwiftUI
+import UIKit
+
 struct MainTabView: View {
-    init() { UITabBar.appearance().backgroundColor = UIColor.systemBackground }
+    init() {
+        UITabBar.appearance().backgroundColor = UIColor.systemBackground
+    }
+    
     var body: some View {
         TabView {
             DownloadView().tabItem { Label("Download", systemImage: "arrow.down.circle.fill") }
