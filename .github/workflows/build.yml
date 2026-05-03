@@ -1,47 +1,32 @@
 name: Build Unsigned IPA
-
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
-
+on: [push, pull_request]
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v3
       - name: Install xcodegen
         run: brew install xcodegen
-
       - name: Generate Xcode Project
         run: xcodegen generate
-
       - name: Build Xcode Project
         run: |
-          # لێرەدا فەرمانی CONFIGURATION_BUILD_DIR مان زیاد کرد بۆ ئەوەی شوێنی ئەپەکە ڕێک بخەین
-          xcodebuild clean build \
+          xcodebuild build \
             -project snapdeeb.xcodeproj \
             -scheme snapdeeb \
             -configuration Release \
-            -arch arm64 \
             -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY="" \
-            COMPILER_INDEX_STORE_ENABLE=NO \
-            CONFIGURATION_BUILD_DIR=build/Release-iphoneos
-
+            CODE_SIGN_IDENTITY=""
       - name: Package into IPA
         run: |
           mkdir -p Payload
-          mv build/Release-iphoneos/snapdeeb.app Payload/
-          zip -r snapdeeb_v5.1.ipa Payload
-
+          cp -r build/Release-iphoneos/snapdeeb.app Payload/
+          zip -r snapdeeb.ipa Payload
       - name: Upload IPA Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: snapdeeb-ipa
-          path: snapdeeb_v5.1.ipa
+          path: snapdeeb.ipa
